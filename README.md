@@ -1,6 +1,6 @@
 # Becca Callahan Static Website
 
-Static author website for the Becca Callahan rebrand.
+Static author website for Becca Callahan.
 
 ## Included
 
@@ -33,7 +33,7 @@ CNAME www   <github-username>.github.io
 
 For a Crazy Domains-specific checklist, see [`docs/crazy-domains-dns.md`](docs/crazy-domains-dns.md).
 
-## Before Launch
+## Site Notes
 
 - Add Becca's helper account as a collaborator if someone else will maintain the site.
 - Confirm the registrar points `www.beccacallahan.com` to GitHub Pages.
