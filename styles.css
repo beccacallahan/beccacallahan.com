@@ -84,9 +84,10 @@ textarea:focus-visible {
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: clamp(104px, 13vw, 190px);
   padding: 0;
   overflow: hidden;
-  background: var(--deep);
+  background: url("assets/becca-callahan-banner.jpg") center center / 100% 100% no-repeat var(--deep);
   text-decoration: none;
 }
 
@@ -99,13 +100,12 @@ textarea:focus-visible {
 }
 
 .brand-wordmark {
-  width: 100%;
-  max-width: none;
-  height: auto;
-  border: 0;
-  border-radius: 0;
-  object-fit: contain;
-  object-position: center center;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
 }
 
 .footer-brand strong {
@@ -925,7 +925,7 @@ textarea {
   .inner,
   .nav-wrap,
   .footer-wrap {
-    width: calc(100vw - 32px);
+    width: calc(100vw - 48px);
     max-width: none;
   }
 
@@ -943,15 +943,15 @@ textarea {
   }
 
   h1 {
-    max-width: calc(100vw - 32px);
-    font-size: 1.82rem;
+    max-width: calc(100vw - 48px);
+    font-size: 1.42rem;
     overflow-wrap: break-word;
   }
 
   .hero-content p,
   .hero-copy,
   .hero-copy p {
-    max-width: calc(100vw - 32px);
+    max-width: calc(100vw - 48px);
     overflow-wrap: break-word;
   }
 
