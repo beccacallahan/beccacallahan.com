@@ -5,7 +5,7 @@ Static author website for Becca Callahan.
 ## Included
 
 - Plain HTML, CSS, and JavaScript.
-- Pages for Home, Books, About, Newsletter, and Contact.
+- Pages for Home, Books, About, Newsletter, Groups, and Contact.
 - Brand assets copied from the provided files.
 - No paid site builder dependency.
 - No legacy author name in the public-facing content.
@@ -38,6 +38,7 @@ For a Crazy Domains-specific checklist, see [`docs/crazy-domains-dns.md`](docs/c
 - Add Becca's helper account as a collaborator if someone else will maintain the site.
 - Confirm the registrar points `www.beccacallahan.com` to GitHub Pages.
 - Confirm the newsletter provider and sign-up URL.
+- Confirm Facebook group links remain current.
 - Confirm the public contact email or form service.
 - Add final book titles, covers, blurbs, and buy links.
 - Add official social links when confirmed.
