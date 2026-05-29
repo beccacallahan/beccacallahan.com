@@ -137,17 +137,15 @@ textarea:focus-visible {
 .site-nav a {
   padding: 10px 12px;
   border-radius: var(--radius);
-  color: var(--ink);
+  color: var(--deep);
   font-family: var(--font-condensed);
-  font-size: 0.88rem;
-  font-weight: 800;
-  letter-spacing: 0.03em;
+  font-size: 0.96rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
   text-decoration: none;
   text-transform: uppercase;
-}
-
-.site-nav a[href*="newsletter"] {
-  color: var(--moss);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: auto;
 }
 
 .site-nav a:hover,
