@@ -466,6 +466,26 @@ h3 {
   object-fit: cover;
 }
 
+.tier-card {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.tier-image {
+  width: 100%;
+  aspect-ratio: 25 / 21;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  object-fit: cover;
+}
+
+.tier-price {
+  margin: 0;
+  color: var(--moss);
+  font-weight: 900;
+}
+
 .book-card h3,
 .card h3 {
   color: var(--deep);
