@@ -877,6 +877,22 @@ h3 {
   color: var(--paper);
 }
 
+.social-facebook .social-icon {
+  background: #1877f2;
+}
+
+.social-instagram .social-icon {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0 8%, #fd5949 42%, #d6249f 62%, #285aeb 92%);
+}
+
+.social-tiktok .social-icon {
+  background: linear-gradient(135deg, #00f2ea 0 17%, #000 17% 83%, #ff0050 83% 100%);
+}
+
+.social-threads .social-icon {
+  background: #000;
+}
+
 .social-icon svg {
   width: 23px;
   height: 23px;
