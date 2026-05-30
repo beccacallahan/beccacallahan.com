@@ -5,7 +5,7 @@ Static author website for Becca Callahan.
 ## Included
 
 - Plain HTML, CSS, and JavaScript.
-- Pages for Home, Books, About, Newsletter, Groups, and Contact.
+- Pages for Home, Books, About, Newsletter, Subscription, Groups, and Contact.
 - Brand assets copied from the provided files.
 - No paid site builder dependency.
 - No legacy author name in the public-facing content.
