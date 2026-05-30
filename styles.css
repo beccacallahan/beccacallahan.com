@@ -280,6 +280,15 @@ h3 {
   margin-top: 24px;
 }
 
+.start-actions {
+  align-items: flex-start;
+}
+
+.read-links {
+  display: grid;
+  gap: 12px;
+}
+
 .button,
 .button-soft,
 .button-subtle {
