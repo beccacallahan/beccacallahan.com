@@ -135,17 +135,18 @@ textarea:focus-visible {
 }
 
 .site-nav a {
-  padding: 10px 12px;
+  padding: 11px 13px;
   border-radius: var(--radius);
   color: var(--deep);
-  font-family: var(--font-condensed);
-  font-size: 0.96rem;
-  font-weight: 900;
-  letter-spacing: 0.02em;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 650;
+  letter-spacing: 0.09em;
+  line-height: 1;
   text-decoration: none;
   text-transform: uppercase;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: auto;
+  -webkit-font-smoothing: antialiased;
 }
 
 .site-nav a:hover,
@@ -161,8 +162,10 @@ textarea:focus-visible {
   border-radius: var(--radius);
   background: var(--paper);
   color: var(--ink);
-  font: inherit;
-  font-weight: 800;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 650;
+  letter-spacing: 0.03em;
 }
 
 .hero {
@@ -509,40 +512,6 @@ h3 {
   text-transform: uppercase;
 }
 
-.promise-strip {
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: rgba(255, 253, 247, 0.62);
-}
-
-.promise-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  padding: 18px 0;
-}
-
-.promise-list span {
-  color: var(--moss);
-  font-family: var(--font-condensed);
-  font-size: 0.9rem;
-  font-weight: 900;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.promise-list span:not(:last-child)::after {
-  content: "";
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  margin-left: 10px;
-  border-radius: 50%;
-  background: var(--gold);
-  vertical-align: middle;
-}
-
 .feature-card,
 .reader-path,
 .note-panel {
@@ -572,7 +541,7 @@ h3 {
 }
 
 .reason-grid.compact {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-top: 22px;
 }
 
@@ -608,6 +577,34 @@ h3 {
 .privacy-note {
   color: var(--moss);
   font-weight: 800;
+}
+
+.coupon-note {
+  border-left: 4px solid var(--gold);
+  padding: 12px 14px;
+  background: rgba(207, 168, 93, 0.12);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.coupon-note span {
+  color: var(--deep);
+  font-weight: 900;
+  letter-spacing: 0.03em;
+}
+
+.subscription-panel h3 {
+  margin-bottom: 16px;
+}
+
+.clean-list {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+}
+
+.clean-list li + li {
+  margin-top: 12px;
 }
 
 .shelf-section + .shelf-section {
@@ -905,7 +902,8 @@ textarea {
   .book-grid,
   .group-grid,
   .trope-grid,
-  .reason-grid {
+  .reason-grid,
+  .reason-grid.compact {
     grid-template-columns: 1fr;
   }
 
