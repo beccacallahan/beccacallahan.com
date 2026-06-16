@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Visitor Data | Becca Callahan</title>
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="theme-color" content="#172018">
+    <meta name="color-scheme" content="light">
+    <link rel="icon" href="../assets/becca-callahan-logo.jpg">
+    <link rel="apple-touch-icon" href="../assets/becca-callahan-logo.jpg">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../assets/analytics-config.js"></script>
+  </head>
+  <body class="admin-page">
+    <header class="site-header">
+      <a class="brand-strip-link" href="../index.html" aria-label="Becca Callahan home">
+        <span class="brand-wordmark" aria-hidden="true">
+          <span class="brand-script">Becca Callahan</span>
+          <span class="brand-tagline">Sweet Romance, From Small Towns to Magical Realms.</span>
+        </span>
+      </a>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="inner">
+          <div class="admin-shell">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Admin</p>
+                <h1>Visitor Data</h1>
+              </div>
+              <p>Private visitor analytics for Becca Callahan's website. Stats appear after the free analytics Worker is connected.</p>
+            </div>
+
+            <div class="admin-login" data-admin-login>
+              <h2>Admin Login</h2>
+              <p>Enter the admin code to view site stats.</p>
+              <form data-login-form>
+                <label>
+                  Admin code
+                  <input name="code" type="password" inputmode="numeric" autocomplete="current-password" placeholder="Enter code">
+                </label>
+                <button class="button" type="submit">View Visitor Data</button>
+              </form>
+              <p class="form-note" data-login-message></p>
+            </div>
+
+            <div class="analytics-dashboard" data-dashboard hidden>
+              <div class="dashboard-actions">
+                <p class="form-note" data-last-updated></p>
+                <button class="button-subtle" type="button" data-refresh>Refresh</button>
+              </div>
+
+              <div class="stat-grid" data-stat-grid></div>
+
+              <section class="analytics-panel">
+                <h2>Last 30 Days</h2>
+                <div class="bar-chart" data-chart></div>
+              </section>
+
+              <div class="analytics-grid">
+                <section class="analytics-panel">
+                  <h2>Top Pages</h2>
+                  <div data-table="pages"></div>
+                </section>
+                <section class="analytics-panel">
+                  <h2>Referrers</h2>
+                  <div data-table="referrers"></div>
+                </section>
+                <section class="analytics-panel">
+                  <h2>Countries</h2>
+                  <div data-table="countries"></div>
+                </section>
+                <section class="analytics-panel">
+                  <h2>Devices</h2>
+                  <div data-table="devices"></div>
+                </section>
+                <section class="analytics-panel">
+                  <h2>Browsers</h2>
+                  <div data-table="browsers"></div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="admin.js"></script>
+  </body>
+</html>

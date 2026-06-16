@@ -1,0 +1,11 @@
+name = "becca-analytics"
+main = "worker.js"
+compatibility_date = "2026-06-16"
+
+[vars]
+ALLOWED_ORIGINS = "https://www.beccacallahan.com,https://beccacallahan.com,http://127.0.0.1:4177"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "becca_analytics"
+database_id = "replace-with-cloudflare-d1-database-id"

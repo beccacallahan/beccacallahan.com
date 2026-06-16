@@ -10,6 +10,7 @@ Static author website for Becca Callahan.
 - No paid site builder dependency.
 - No legacy author name in the public-facing content.
 - GitHub Pages `CNAME`, `.nojekyll`, `404.html`, sitemap, robots file, web manifest, canonical links, and social preview metadata.
+- Private `/admin/` visitor data page wired for a lightweight Cloudflare Worker and D1 analytics backend.
 
 ## GitHub Pages
 
@@ -42,3 +43,4 @@ For a Crazy Domains-specific checklist, see [`docs/crazy-domains-dns.md`](docs/c
 - Confirm the public contact email or form service.
 - Add final book titles, covers, blurbs, and buy links.
 - Add official social links when confirmed.
+- Deploy the optional visitor analytics Worker and connect `assets/analytics-config.js`; see [`docs/analytics-setup.md`](docs/analytics-setup.md).
