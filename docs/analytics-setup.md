@@ -33,7 +33,7 @@ Create a D1 database:
 wrangler d1 create becca_analytics
 ```
 
-Copy `analytics-worker/wrangler.toml.example` to `analytics-worker/wrangler.toml`, then paste the returned D1 `database_id` into that file.
+This deployment already includes `analytics-worker/wrangler.toml`. If you ever recreate the database, paste the new D1 `database_id` into that file.
 
 Apply the schema:
 
@@ -68,10 +68,10 @@ From `analytics-worker`:
 wrangler deploy
 ```
 
-Copy the Worker URL, for example:
+The deployed Worker URL is:
 
 ```text
-https://becca-analytics.your-account.workers.dev
+https://becca-analytics.nick-df1.workers.dev
 ```
 
 ## 4. Connect the website
@@ -80,7 +80,7 @@ Edit `assets/analytics-config.js`:
 
 ```js
 window.BeccaAnalytics = {
-  endpoint: "https://becca-analytics.your-account.workers.dev",
+  endpoint: "https://becca-analytics.nick-df1.workers.dev",
   enabled: true
 };
 ```

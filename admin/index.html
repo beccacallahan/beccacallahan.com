@@ -55,9 +55,24 @@
 
               <div class="stat-grid" data-stat-grid></div>
 
-              <section class="analytics-panel">
-                <h2>Last 30 Days</h2>
+              <section class="analytics-panel analytics-panel-wide">
+                <div class="panel-heading">
+                  <div>
+                    <h2>Visits Over Time</h2>
+                    <p>Daily page views from the last 30 days.</p>
+                  </div>
+                </div>
                 <div class="bar-chart" data-chart></div>
+              </section>
+
+              <section class="analytics-panel analytics-panel-wide">
+                <div class="panel-heading">
+                  <div>
+                    <h2>Visitor Map</h2>
+                    <p>Country-level location data from Cloudflare. No raw IP addresses are stored.</p>
+                  </div>
+                </div>
+                <div class="world-map" data-map aria-label="Visitor locations by country"></div>
               </section>
 
               <div class="analytics-grid">

@@ -7,10 +7,43 @@
   const dashboard = document.querySelector("[data-dashboard]");
   const statGrid = document.querySelector("[data-stat-grid]");
   const chart = document.querySelector("[data-chart]");
+  const map = document.querySelector("[data-map]");
   const updated = document.querySelector("[data-last-updated]");
   const refreshButton = document.querySelector("[data-refresh]");
 
   let adminCode = sessionStorage.getItem("beccaAnalyticsAdminCode") || "";
+  const countryPoints = {
+    AD: [1.6, 42.5], AE: [54.4, 24.4], AF: [67.7, 33.9], AG: [-61.8, 17.1], AL: [20.2, 41.2], AM: [45.0, 40.1],
+    AO: [17.9, -11.2], AR: [-63.6, -38.4], AT: [14.6, 47.5], AU: [133.8, -25.3], AZ: [47.6, 40.1], BA: [17.7, 43.9],
+    BB: [-59.5, 13.2], BD: [90.4, 23.7], BE: [4.5, 50.5], BF: [-1.6, 12.2], BG: [25.5, 42.7], BH: [50.6, 26.1],
+    BI: [29.9, -3.4], BJ: [2.3, 9.3], BN: [114.7, 4.5], BO: [-63.6, -16.3], BR: [-51.9, -14.2], BS: [-77.4, 25.0],
+    BT: [90.4, 27.5], BW: [24.7, -22.3], BY: [27.9, 53.7], BZ: [-88.5, 17.2], CA: [-106.3, 56.1], CD: [21.8, -4.0],
+    CF: [20.9, 6.6], CG: [15.8, -0.2], CH: [8.2, 46.8], CI: [-5.5, 7.5], CL: [-71.5, -35.7], CM: [12.4, 7.4],
+    CN: [104.2, 35.9], CO: [-74.3, 4.6], CR: [-84.0, 9.7], CU: [-77.8, 21.5], CV: [-23.6, 16.0], CY: [33.4, 35.1],
+    CZ: [15.5, 49.8], DE: [10.5, 51.2], DJ: [42.6, 11.8], DK: [9.5, 56.3], DO: [-70.2, 18.7], DZ: [1.7, 28.0],
+    EC: [-78.2, -1.8], EE: [25.0, 58.6], EG: [30.8, 26.8], ER: [39.8, 15.2], ES: [-3.7, 40.4], ET: [40.5, 9.1],
+    FI: [25.7, 61.9], FJ: [178.1, -17.7], FR: [2.2, 46.2], GA: [11.6, -0.8], GB: [-3.4, 55.4], GD: [-61.7, 12.1],
+    GE: [43.4, 42.3], GH: [-1.0, 7.9], GM: [-15.3, 13.4], GN: [-9.7, 9.9], GQ: [10.3, 1.7], GR: [21.8, 39.1],
+    GT: [-90.2, 15.8], GY: [-58.9, 5.0], HN: [-86.2, 15.2], HR: [15.2, 45.1], HT: [-72.3, 19.0], HU: [19.5, 47.2],
+    ID: [113.9, -0.8], IE: [-8.2, 53.4], IL: [34.9, 31.0], IN: [78.9, 20.6], IQ: [43.7, 33.2], IR: [53.7, 32.4],
+    IS: [-19.0, 64.9], IT: [12.6, 41.9], JM: [-77.3, 18.1], JO: [36.2, 30.6], JP: [138.3, 36.2], KE: [37.9, -0.0],
+    KG: [74.8, 41.2], KH: [104.9, 12.6], KR: [127.8, 35.9], KW: [47.5, 29.3], KZ: [66.9, 48.0], LA: [102.5, 19.9],
+    LB: [35.9, 33.9], LK: [80.8, 7.9], LR: [-9.4, 6.4], LS: [28.2, -29.6], LT: [23.9, 55.2], LU: [6.1, 49.8],
+    LV: [24.6, 56.9], LY: [17.2, 26.3], MA: [-7.1, 31.8], MD: [28.4, 47.4], ME: [19.4, 42.7], MG: [46.9, -18.8],
+    MK: [21.7, 41.6], ML: [-4.0, 17.6], MM: [95.9, 21.9], MN: [103.8, 46.9], MR: [-10.9, 21.0], MT: [14.4, 35.9],
+    MU: [57.6, -20.3], MV: [73.2, 3.2], MW: [34.3, -13.3], MX: [-102.6, 23.6], MY: [101.9, 4.2], MZ: [35.5, -18.7],
+    NA: [18.5, -22.9], NE: [8.1, 17.6], NG: [8.7, 9.1], NI: [-85.2, 12.9], NL: [5.3, 52.1], NO: [8.5, 60.5],
+    NP: [84.1, 28.4], NZ: [174.9, -40.9], OM: [55.9, 21.5], PA: [-80.8, 8.5], PE: [-75.0, -9.2], PG: [143.9, -6.3],
+    PH: [122.9, 12.9], PK: [69.3, 30.4], PL: [19.1, 51.9], PT: [-8.2, 39.4], PY: [-58.4, -23.4], QA: [51.2, 25.4],
+    RO: [24.9, 45.9], RS: [21.0, 44.0], RU: [90.0, 61.5], RW: [29.9, -1.9], SA: [45.1, 23.9], SB: [160.2, -9.6],
+    SC: [55.5, -4.7], SD: [30.2, 12.9], SE: [18.6, 60.1], SG: [103.8, 1.4], SI: [14.9, 46.2], SK: [19.7, 48.7],
+    SL: [-11.8, 8.5], SN: [-14.5, 14.5], SO: [46.2, 5.2], SR: [-56.0, 4.1], SS: [31.3, 6.9], SV: [-88.9, 13.8],
+    SY: [38.9, 34.8], SZ: [31.5, -26.5], TD: [18.7, 15.5], TG: [0.8, 8.6], TH: [100.9, 15.9], TJ: [71.3, 38.9],
+    TL: [125.7, -8.9], TN: [9.5, 33.9], TR: [35.2, 39.0], TT: [-61.2, 10.7], TW: [120.9, 23.7], TZ: [34.9, -6.4],
+    UA: [31.2, 48.4], UG: [32.3, 1.4], US: [-98.6, 39.8], UY: [-55.8, -32.5], UZ: [64.6, 41.4], VE: [-66.6, 6.4],
+    VN: [108.3, 14.1], VU: [166.9, -15.4], WS: [-172.1, -13.8], YE: [48.5, 15.6], ZA: [22.9, -30.6], ZM: [27.8, -13.1],
+    ZW: [29.2, -19.0]
+  };
 
   function setMessage(text) {
     if (message) {
@@ -34,6 +67,21 @@
     return Number(value || 0).toLocaleString();
   }
 
+  function countryName(code) {
+    const value = String(code || "").toUpperCase();
+    if (!value || value === "UNKNOWN") {
+      return "Unknown";
+    }
+
+    try {
+      if (Intl.DisplayNames) {
+        return new Intl.DisplayNames(["en"], { type: "region" }).of(value) || value;
+      }
+    } catch {}
+
+    return value;
+  }
+
   function renderStats(data) {
     const totals = data.totals || {};
     const cards = [
@@ -53,11 +101,40 @@
   function renderChart(rows) {
     const series = rows || [];
     const max = Math.max(1, ...series.map(function (row) { return Number(row.views || 0); }));
+    const total = series.reduce(function (sum, row) { return sum + Number(row.views || 0); }, 0);
 
     chart.innerHTML = series.map(function (row) {
       const height = Math.max(4, Math.round((Number(row.views || 0) / max) * 100));
-      return '<div class="bar-item"><span class="bar" style="height:' + height + '%"></span><small>' + escapeHtml(row.day.slice(5)) + '</small><strong>' + formatNumber(row.views) + '</strong></div>';
+      return '<div class="bar-item" title="' + escapeHtml(row.day + ": " + formatNumber(row.views) + " views") + '"><span class="bar" style="height:' + height + '%"></span><small>' + escapeHtml(row.day.slice(5)) + '</small><strong>' + formatNumber(row.views) + '</strong></div>';
+    }).join("") + '<p class="chart-total">' + formatNumber(total) + ' views in this 30-day window</p>';
+  }
+
+  function renderMap(rows) {
+    if (!map) {
+      return;
+    }
+
+    const countries = rows || [];
+    const max = Math.max(1, ...countries.map(function (row) { return Number(row.views || 0); }));
+    const markers = countries.map(function (row) {
+      const code = String(row.label || "").toUpperCase();
+      const point = countryPoints[code];
+      if (!point) {
+        return "";
+      }
+
+      const left = ((point[0] + 180) / 360) * 100;
+      const top = ((90 - point[1]) / 180) * 100;
+      const size = 10 + Math.round((Number(row.views || 0) / max) * 18);
+      const label = countryName(code) + ": " + formatNumber(row.views) + " views";
+      return '<span class="map-marker" style="left:' + left.toFixed(2) + '%; top:' + top.toFixed(2) + '%; --marker-size:' + size + 'px" title="' + escapeHtml(label) + '"><span>' + escapeHtml(formatNumber(row.views)) + '</span></span>';
     }).join("");
+
+    const list = countries.length ? countries.slice(0, 6).map(function (row) {
+      return '<li><span>' + escapeHtml(countryName(row.label)) + '</span><strong>' + formatNumber(row.views) + '</strong></li>';
+    }).join("") : '<li><span>No location data yet</span><strong>0</strong></li>';
+
+    map.innerHTML = '<div class="map-canvas"><span class="continent north-america"></span><span class="continent south-america"></span><span class="continent europe"></span><span class="continent africa"></span><span class="continent asia"></span><span class="continent australia"></span>' + markers + '</div><ul class="map-list">' + list + '</ul>';
   }
 
   function renderTable(name, rows) {
@@ -72,7 +149,8 @@
     }
 
     target.innerHTML = '<table class="analytics-table"><thead><tr><th>Name</th><th>Views</th><th>Visitors</th></tr></thead><tbody>' + rows.map(function (row) {
-      return "<tr><td>" + escapeHtml(row.label || row.path || row.name || "Direct") + "</td><td>" + formatNumber(row.views) + "</td><td>" + formatNumber(row.uniqueVisitors) + "</td></tr>";
+      const label = name === "countries" ? countryName(row.label) : row.label || row.path || row.name || "Direct";
+      return "<tr><td>" + escapeHtml(label) + "</td><td>" + formatNumber(row.views) + "</td><td>" + formatNumber(row.uniqueVisitors) + "</td></tr>";
     }).join("") + "</tbody></table>";
   }
 
@@ -109,6 +187,7 @@
 
     renderStats(data);
     renderChart(data.series);
+    renderMap(data.countries);
     renderTable("pages", data.pages);
     renderTable("referrers", data.referrers);
     renderTable("countries", data.countries);

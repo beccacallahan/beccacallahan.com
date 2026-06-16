@@ -1,0 +1,14 @@
+name = "becca-analytics"
+main = "worker.js"
+compatibility_date = "2026-06-16"
+account_id = "df1da23e899924393519d39a74c54d68"
+workers_dev = true
+preview_urls = false
+
+[vars]
+ALLOWED_ORIGINS = "https://www.beccacallahan.com,https://beccacallahan.com,http://127.0.0.1:4177"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "becca_analytics"
+database_id = "e81a2b78-06d2-42c7-9539-1fa88c6090a6"

@@ -41,7 +41,12 @@ async function collect(request, env, cors) {
   }
 
   const ip = request.headers.get("CF-Connecting-IP") || "";
-  const visitorHash = await sha256([env.VISITOR_SALT || "change-me", ip, userAgent, day].join(":"));
+  const salt = env.VISITOR_SALT || "";
+  if (!salt) {
+    return json({ ok: false, error: "analytics_not_configured" }, 503, cors);
+  }
+
+  const visitorHash = await sha256([salt, ip, userAgent, day].join(":"));
   const path = normalizePath(body.path);
   const title = cleanText(body.title, 120);
   const referrer = normalizeReferrer(body.referrer);

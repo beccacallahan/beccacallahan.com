@@ -1,6 +1,4 @@
 window.BeccaAnalytics = {
-  // Add the deployed Cloudflare Worker URL here after setup.
-  // Example: "https://becca-analytics.your-account.workers.dev"
-  endpoint: "",
-  enabled: false
+  endpoint: "https://becca-analytics.nick-df1.workers.dev",
+  enabled: true
 };
