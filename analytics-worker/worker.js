@@ -180,6 +180,7 @@ function corsHeaders(request, env) {
     "Access-Control-Allow-Origin": allowedOrigin,
     "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type,X-Admin-Code",
+    "Access-Control-Allow-Credentials": "true",
     "Vary": "Origin"
   };
 }
