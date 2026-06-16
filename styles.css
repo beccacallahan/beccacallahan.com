@@ -1129,13 +1129,14 @@ textarea {
 
 .world-map {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px;
+  grid-template-columns: minmax(0, 1fr) 210px;
   gap: 20px;
   align-items: center;
 }
 
 .map-canvas {
-  min-height: 310px;
+  min-height: 0;
+  aspect-ratio: 4 / 3;
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(222, 216, 200, 0.92);
@@ -1149,21 +1150,23 @@ textarea {
 .map-canvas::before {
   content: "";
   position: absolute;
-  inset: 18px;
+  inset: 0;
+  z-index: 2;
   border-radius: 50%;
-  background: rgba(255, 253, 247, 0.34);
-  opacity: 0.55;
+  background: radial-gradient(circle at 50% 50%, transparent 58%, rgba(255, 253, 247, 0.22) 100%);
+  opacity: 0.8;
+  pointer-events: none;
 }
 
 .world-map-art {
   position: absolute;
   z-index: 1;
-  inset: 20px 18px;
-  width: calc(100% - 36px);
-  height: calc(100% - 40px);
-  object-fit: contain;
-  opacity: 0.98;
-  filter: saturate(0.96) contrast(1.02);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  filter: saturate(0.98) contrast(1.01);
 }
 
 .map-marker {
@@ -1306,7 +1309,7 @@ textarea {
   }
 
   .map-canvas {
-    min-height: 260px;
+    aspect-ratio: 4 / 3;
   }
 }
 

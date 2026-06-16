@@ -12,6 +12,80 @@
   const refreshButton = document.querySelector("[data-refresh]");
 
   let adminCode = sessionStorage.getItem("beccaAnalyticsAdminCode") || "";
+  const decorativeMapPoints = {
+    AE: [64.2, 57.1],
+    AF: [64.4, 51.4],
+    AR: [29.2, 78.3],
+    AT: [52.0, 45.0],
+    AU: [78.3, 74.6],
+    BD: [69.2, 58.0],
+    BE: [49.5, 43.5],
+    BR: [31.5, 67.2],
+    CA: [22.8, 35.5],
+    CH: [50.5, 45.2],
+    CL: [27.1, 75.0],
+    CN: [71.8, 44.2],
+    CO: [29.8, 59.1],
+    CR: [25.9, 56.1],
+    CU: [27.4, 52.3],
+    CZ: [52.3, 43.4],
+    DE: [50.9, 42.6],
+    DK: [51.0, 39.1],
+    DO: [30.6, 52.8],
+    DZ: [52.0, 56.1],
+    EC: [27.5, 60.6],
+    EG: [58.3, 55.4],
+    ES: [46.8, 49.2],
+    ET: [60.1, 63.2],
+    FI: [55.5, 34.2],
+    FR: [49.3, 46.1],
+    GB: [46.1, 39.9],
+    GH: [52.0, 64.1],
+    GR: [55.0, 51.0],
+    GT: [23.9, 55.2],
+    HK: [75.4, 55.0],
+    ID: [76.0, 68.0],
+    IE: [44.7, 40.8],
+    IL: [57.1, 54.2],
+    IN: [65.2, 56.2],
+    IR: [61.1, 52.0],
+    IT: [52.0, 48.3],
+    JP: [83.8, 48.0],
+    KE: [60.2, 68.0],
+    KH: [73.1, 62.0],
+    KR: [80.3, 48.0],
+    KZ: [66.0, 42.3],
+    LK: [66.0, 64.2],
+    MA: [48.5, 54.5],
+    MM: [71.3, 58.2],
+    MX: [21.6, 52.1],
+    MY: [73.3, 64.3],
+    NG: [54.0, 64.0],
+    NL: [49.9, 42.5],
+    NO: [50.5, 33.0],
+    NP: [68.0, 53.3],
+    NZ: [78.4, 83.1],
+    PE: [28.2, 65.2],
+    PH: [78.0, 62.0],
+    PK: [63.1, 53.0],
+    PL: [53.3, 42.6],
+    PT: [45.5, 50.0],
+    QA: [63.4, 56.0],
+    RU: [70.0, 37.2],
+    SA: [60.0, 57.2],
+    SE: [52.5, 35.0],
+    SG: [74.0, 66.0],
+    TH: [72.0, 61.0],
+    TR: [57.0, 50.0],
+    TW: [77.8, 54.3],
+    TZ: [61.0, 71.0],
+    UA: [57.0, 44.0],
+    US: [22.3, 44.5],
+    UY: [33.2, 76.3],
+    VE: [31.0, 58.0],
+    VN: [74.0, 61.0],
+    ZA: [55.8, 76.0]
+  };
   const countryPoints = {
     AD: [1.6, 42.5], AE: [54.4, 24.4], AF: [67.7, 33.9], AG: [-61.8, 17.1], AL: [20.2, 41.2], AM: [45.0, 40.1],
     AO: [17.9, -11.2], AR: [-63.6, -38.4], AT: [14.6, 47.5], AU: [133.8, -25.3], AZ: [47.6, 40.1], BA: [17.7, 43.9],
@@ -67,6 +141,10 @@
     return Number(value || 0).toLocaleString();
   }
 
+  function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+  }
+
   function countryName(code) {
     const value = String(code || "").toUpperCase();
     if (!value || value === "UNKNOWN") {
@@ -109,6 +187,17 @@
     }).join("") + '<p class="chart-total">' + formatNumber(total) + ' views in this 30-day window</p>';
   }
 
+  function mapPosition(code, point) {
+    if (decorativeMapPoints[code]) {
+      return decorativeMapPoints[code];
+    }
+
+    const left = clamp(4 + (((point[0] + 180) / 360) * 88), 6, 93);
+    const top = clamp(29 + (((90 - point[1]) / 180) * 54), 31, 84);
+
+    return [left, top];
+  }
+
   function renderMap(rows) {
     if (!map) {
       return;
@@ -123,8 +212,9 @@
         return "";
       }
 
-      const left = ((point[0] + 180) / 360) * 100;
-      const top = ((90 - point[1]) / 180) * 100;
+      const position = mapPosition(code, point);
+      const left = position[0];
+      const top = position[1];
       const size = 10 + Math.round((Number(row.views || 0) / max) * 18);
       const label = countryName(code) + ": " + formatNumber(row.views) + " views";
       return '<span class="map-marker" style="left:' + left.toFixed(2) + '%; top:' + top.toFixed(2) + '%; --marker-size:' + size + 'px" title="' + escapeHtml(label) + '"><span>' + escapeHtml(formatNumber(row.views)) + '</span></span>';
@@ -134,7 +224,7 @@
       return '<li><span>' + escapeHtml(countryName(row.label)) + '</span><strong>' + formatNumber(row.views) + '</strong></li>';
     }).join("") : '<li><span>No location data yet</span><strong>0</strong></li>';
 
-    map.innerHTML = '<div class="map-canvas"><img class="world-map-art" src="../assets/world-map.svg" alt="" aria-hidden="true">' + markers + '</div><ul class="map-list">' + list + '</ul>';
+    map.innerHTML = '<div class="map-canvas"><img class="world-map-art" src="../assets/becca-callahan-world-map.webp" alt="" aria-hidden="true">' + markers + '</div><ul class="map-list">' + list + '</ul>';
   }
 
   function renderTable(name, rows) {
