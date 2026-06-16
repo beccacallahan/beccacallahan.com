@@ -134,7 +134,7 @@
       return '<li><span>' + escapeHtml(countryName(row.label)) + '</span><strong>' + formatNumber(row.views) + '</strong></li>';
     }).join("") : '<li><span>No location data yet</span><strong>0</strong></li>';
 
-    map.innerHTML = '<div class="map-canvas"><span class="continent north-america"></span><span class="continent south-america"></span><span class="continent europe"></span><span class="continent africa"></span><span class="continent asia"></span><span class="continent australia"></span>' + markers + '</div><ul class="map-list">' + list + '</ul>';
+    map.innerHTML = '<div class="map-canvas"><img class="world-map-art" src="../assets/world-map.svg" alt="" aria-hidden="true">' + markers + '</div><ul class="map-list">' + list + '</ul>';
   }
 
   function renderTable(name, rows) {
